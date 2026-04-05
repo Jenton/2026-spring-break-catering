@@ -1302,13 +1302,13 @@ body {
 
 <style>
 /* ─── CART ─── */
-.menu-item { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
-.menu-item:hover { border-color: var(--rust-light); background: white; }
-.menu-item.in-cart { border-color: var(--rust); background: rgba(184,76,43,0.04); }
-.menu-item.in-cart .item-name::before {
-  content: '✓ ';
+.content .menu-item { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.content .menu-item:hover { border-color: var(--rust-light); background: white; }
+.content .menu-item.in-cart { border-color: var(--rust); background: rgba(184,76,43,0.05); }
+.content .menu-item.in-cart > .item-info > .item-name::before {
+  content: '✓  ';
   color: var(--rust);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Floating cart button */
@@ -1501,9 +1501,11 @@ let cart = loadCart();
 
 // ─── TOGGLE ITEM ───
 function toggleItem(el, mealId) {
-  const name = el.querySelector('.item-name').textContent.replace(/^✓ /, '');
+  const nameEl = el.querySelector('.item-info > .item-name');
+  if (!nameEl) return;
+  const name = nameEl.textContent.replace(/^✓\s+/, '').trim();
   const priceEl = el.querySelector('.item-price');
-  const price = priceEl ? priceEl.textContent : '';
+  const price = priceEl ? priceEl.textContent.trim() : '';
 
   if (!cart[mealId]) cart[mealId] = [];
   const idx = cart[mealId].findIndex(i => i.name === name);
@@ -1551,9 +1553,11 @@ function updateFab() {
 
 // ─── SYNC MENU UI from cart state ───
 function syncMenuUI() {
-  document.querySelectorAll('.menu-item[data-meal]').forEach(el => {
+  document.querySelectorAll('.content .menu-item[data-meal]').forEach(el => {
     const mealId = el.dataset.meal;
-    const name = el.querySelector('.item-name').textContent.replace(/^✓ /, '');
+    const nameEl = el.querySelector('.item-info > .item-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.replace(/^✓\s+/, '').trim();
     const inCart = cart[mealId] && cart[mealId].some(i => i.name === name);
     el.classList.toggle('in-cart', inCart);
   });
@@ -1651,12 +1655,26 @@ function switchTo(mealId) {
 }
 
 // ─── INIT ───
-// Wire up all menu items with data-meal and onclick
+// Clear any stale cart data that might be malformed
+try {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) JSON.parse(raw); // validate — throws if corrupt
+} catch {
+  localStorage.removeItem(STORAGE_KEY);
+  cart = {};
+}
+
+// Wire up menu items — single event listener only, no onclick attrs
 document.querySelectorAll('.meal-panel').forEach(panel => {
   const mealId = panel.id.replace('panel-', '');
   panel.querySelectorAll('.menu-item').forEach(el => {
     el.dataset.meal = mealId;
-    el.addEventListener('click', function() { toggleItem(this, mealId); });
+    // Remove any stale onclick before adding listener
+    el.removeAttribute('onclick');
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleItem(this, mealId);
+    });
   });
 });
 
