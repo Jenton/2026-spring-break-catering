@@ -1485,18 +1485,27 @@ const MEALS = [
 ];
 
 // ─── CART STATE (localStorage-backed) ───
-const STORAGE_KEY = 'sonoma-trip-cart-v3';
+const STORAGE_KEY = 'sonoma-cart-v4';
 
 function loadCart() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-  catch { return {}; }
+  // Clear all old keys from previous versions
+  Object.keys(localStorage)
+    .filter(k => k.startsWith('sonoma'))
+    .forEach(k => { if (k !== STORAGE_KEY) localStorage.removeItem(k); });
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    // Validate it's a plain object with array values
+    if (typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return parsed;
+  } catch { return {}; }
 }
 
 function saveCart(cart) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
 }
 
-// cart = { mealId: [ {name, price}, ... ] }
 let cart = loadCart();
 
 // ─── TOGGLE ITEM ───
@@ -1655,17 +1664,7 @@ function switchTo(mealId) {
 }
 
 // ─── INIT ───
-// Clear old storage keys from previous versions
-['sonoma-trip-cart-2026', 'sonoma-trip-cart'].forEach(k => localStorage.removeItem(k));
-try {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw) JSON.parse(raw); // validate — throws if corrupt
-} catch {
-  localStorage.removeItem(STORAGE_KEY);
-  cart = {};
-}
-
-// Wire up menu items — single event listener only, no onclick attrs
+// Wire up menu items
 document.querySelectorAll('.meal-panel').forEach(panel => {
   const mealId = panel.id.replace('panel-', '');
   panel.querySelectorAll('.menu-item').forEach(el => {
