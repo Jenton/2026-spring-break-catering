@@ -768,7 +768,7 @@ body {
           <div class="rest-cuisine">Peruvian-Inspired · 678 W Napa St · 707-934-4900</div>
           <div class="rest-tags">
             <span class="rest-tag hl">Dad pickup by 5:30pm</span>
-            <span class="rest-tag">contact@allikaigroup.com</span>
+            <span class="rest-tag"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="03606c6d7762607743626f6f6a68626a64716c76732d606c6e">[email&#160;protected]</a></span>
           </div>
           <div class="rest-why"><strong>Note:</strong> Something genuinely different midweek. Rice bowl platter for 12 at $126 is a great anchor — add ceviche and a salad alongside it.</div>
         </div>
@@ -1033,7 +1033,7 @@ body {
         <div class="rest-header-inner">
           <span class="rest-emoji">🧀</span>
           <div class="rest-name">Delicious Dish Provisions</div>
-          <div class="rest-cuisine">Wine Country Deli · 565 5th St W · orders@deliciousdishsf.com</div>
+          <div class="rest-cuisine">Wine Country Deli · 565 5th St W · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="147b6670716667547071787d777d7b6167707d677c67723a777b79">[email&#160;protected]</a></div>
           <div class="rest-tags">
             <span class="rest-tag hl">Dad pickup by 6:30pm</span>
             <span class="rest-tag">Best Caterer 2019–2025</span>
@@ -1300,7 +1300,332 @@ body {
   </div><!-- /content -->
 </div><!-- /app -->
 
+<style>
+/* ─── CART ─── */
+.menu-item { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.menu-item:hover { border-color: var(--rust-light); background: white; }
+.menu-item.in-cart { border-color: var(--rust); background: rgba(184,76,43,0.04); }
+.menu-item.in-cart .item-name::before {
+  content: '✓ ';
+  color: var(--rust);
+  font-weight: 600;
+}
+
+/* Floating cart button */
+.cart-fab {
+  position: fixed;
+  bottom: 24px; right: 20px;
+  background: var(--rust);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: none;
+  align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(184,76,43,0.4);
+  transition: all 0.2s;
+  z-index: 200;
+}
+.cart-fab:hover { background: var(--rust-light); transform: translateY(-2px); }
+.cart-fab-count {
+  background: white; color: var(--rust);
+  border-radius: 50%; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+
+/* Cart drawer */
+.cart-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 300;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.cart-overlay.open { display: block; opacity: 1; }
+
+.cart-drawer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--warm-white);
+  border-radius: 20px 20px 0 0;
+  z-index: 400;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+}
+.cart-drawer.open { transform: translateY(0); }
+
+.cart-handle {
+  width: 40px; height: 4px;
+  background: var(--mist-dark);
+  border-radius: 2px;
+  margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+.cart-header {
+  padding: 16px 20px 12px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--mist);
+  flex-shrink: 0;
+}
+.cart-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+}
+.cart-close {
+  background: var(--mist); border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--slate);
+}
+
+.cart-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 16px 20px;
+}
+
+.cart-meal-group { margin-bottom: 20px; }
+.cart-meal-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--slate);
+  border-bottom: 1px solid var(--mist);
+  padding-bottom: 6px; margin-bottom: 8px;
+}
+.cart-meal-restaurant {
+  font-size: 11px; color: var(--rust);
+  font-weight: 500; margin-bottom: 8px;
+}
+.cart-item-row {
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--mist);
+  font-size: 13px;
+}
+.cart-item-row:last-child { border-bottom: none; }
+.cart-item-name { flex: 1; font-weight: 500; }
+.cart-item-price { color: var(--slate); font-size: 12px; flex-shrink: 0; }
+.cart-item-remove {
+  background: none; border: none; color: var(--mist-dark);
+  font-size: 16px; cursor: pointer; padding: 0 0 0 8px;
+  line-height: 1; flex-shrink: 0;
+  transition: color 0.15s;
+}
+.cart-item-remove:hover { color: var(--rust); }
+
+.cart-empty {
+  text-align: center; color: var(--slate);
+  font-size: 14px; padding: 40px 0;
+  font-style: italic;
+}
+
+.cart-footer {
+  padding: 12px 20px 28px;
+  border-top: 1px solid var(--mist);
+  flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.cart-copy-btn {
+  width: 100%; padding: 14px;
+  background: var(--ink); color: white; border: none;
+  border-radius: 10px; font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: background 0.2s;
+}
+.cart-copy-btn:hover { background: #2D2B27; }
+.cart-clear-btn {
+  width: 100%; padding: 10px;
+  background: none; color: var(--slate);
+  border: 1.5px solid var(--mist-dark);
+  border-radius: 10px; font-family: 'Outfit', sans-serif;
+  font-size: 13px; cursor: pointer; transition: all 0.2s;
+}
+.cart-clear-btn:hover { border-color: var(--rust); color: var(--rust); }
+</style>
+
+<!-- Floating cart button -->
+<button class="cart-fab" id="cartFab" onclick="openCart()">
+  🛒 My Order <span class="cart-fab-count" id="cartCount">0</span>
+</button>
+
+<!-- Cart overlay + drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-handle"></div>
+  <div class="cart-header">
+    <div class="cart-title">My Order</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer">
+    <button class="cart-copy-btn" onclick="copyCart()">📋 Copy order to clipboard</button>
+    <button class="cart-clear-btn" onclick="clearCart()">Clear all</button>
+  </div>
+</div>
+
 <script>
+// ─── MEAL METADATA ───
+const MEALS = [
+  { id: 'sunday-dinner',    label: 'Sunday Dinner',    restaurant: 'El Molino Central' },
+  { id: 'monday-lunch',     label: 'Monday Lunch',     restaurant: 'Napa Catering Co.' },
+  { id: 'monday-dinner',    label: 'Monday Dinner',    restaurant: 'Bangkok 9' },
+  { id: 'tuesday-lunch',    label: 'Tuesday Lunch',    restaurant: 'Allikai Eatery' },
+  { id: 'tuesday-dinner',   label: 'Tuesday Dinner',   restaurant: 'Napa Catering Co.' },
+  { id: 'wednesday-lunch',  label: 'Wednesday Lunch',  restaurant: 'Delicious Dish' },
+  { id: 'wednesday-dinner', label: 'Wednesday Dinner', restaurant: 'Spread Kitchen' },
+];
+
+// ─── CART STATE (localStorage-backed) ───
+const STORAGE_KEY = 'sonoma-trip-cart-2026';
+
+function loadCart() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+}
+
+// cart = { mealId: [ {name, price}, ... ] }
+let cart = loadCart();
+
+// ─── TOGGLE ITEM ───
+function toggleItem(el, mealId) {
+  const name = el.querySelector('.item-name').textContent.replace(/^✓ /, '');
+  const priceEl = el.querySelector('.item-price');
+  const price = priceEl ? priceEl.textContent : '';
+
+  if (!cart[mealId]) cart[mealId] = [];
+  const idx = cart[mealId].findIndex(i => i.name === name);
+
+  if (idx >= 0) {
+    cart[mealId].splice(idx, 1);
+    if (cart[mealId].length === 0) delete cart[mealId];
+    el.classList.remove('in-cart');
+  } else {
+    cart[mealId].push({ name, price });
+    el.classList.add('in-cart');
+  }
+
+  saveCart(cart);
+  updateFab();
+}
+
+// ─── REMOVE FROM CART ───
+function removeItem(mealId, itemName) {
+  if (!cart[mealId]) return;
+  cart[mealId] = cart[mealId].filter(i => i.name !== itemName);
+  if (cart[mealId].length === 0) delete cart[mealId];
+  saveCart(cart);
+  updateFab();
+  syncMenuUI();
+  renderCartBody();
+}
+
+function clearCart() {
+  if (!confirm('Clear your entire order?')) return;
+  cart = {};
+  saveCart(cart);
+  updateFab();
+  syncMenuUI();
+  renderCartBody();
+}
+
+// ─── FAB ───
+function updateFab() {
+  const total = Object.values(cart).reduce((sum, items) => sum + items.length, 0);
+  const fab = document.getElementById('cartFab');
+  document.getElementById('cartCount').textContent = total;
+  fab.style.display = total > 0 ? 'flex' : 'none';
+}
+
+// ─── SYNC MENU UI from cart state ───
+function syncMenuUI() {
+  document.querySelectorAll('.menu-item[data-meal]').forEach(el => {
+    const mealId = el.dataset.meal;
+    const name = el.querySelector('.item-name').textContent.replace(/^✓ /, '');
+    const inCart = cart[mealId] && cart[mealId].some(i => i.name === name);
+    el.classList.toggle('in-cart', inCart);
+  });
+}
+
+// ─── CART DRAWER ───
+function openCart() {
+  renderCartBody();
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+
+function renderCartBody() {
+  const body = document.getElementById('cartBody');
+  const total = Object.values(cart).reduce((sum, items) => sum + items.length, 0);
+
+  if (total === 0) {
+    body.innerHTML = '<div class="cart-empty">No items selected yet.<br>Tap any dish to add it.</div>';
+    return;
+  }
+
+  let html = '';
+  MEALS.forEach(meal => {
+    const items = cart[meal.id];
+    if (!items || items.length === 0) return;
+    html += `
+      <div class="cart-meal-group">
+        <div class="cart-meal-label">${meal.label}</div>
+        <div class="cart-meal-restaurant">${meal.restaurant}</div>
+    `;
+    items.forEach(item => {
+      html += `
+        <div class="cart-item-row">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price}</div>
+          <button class="cart-item-remove" onclick="removeItem('${meal.id}', '${item.name.replace(/'/g, "\\'")}')">×</button>
+        </div>
+      `;
+    });
+    html += '</div>';
+  });
+
+  body.innerHTML = html;
+}
+
+function copyCart() {
+  let text = '🍷 SONOMA TRIP ORDER\n3360 Westach Way · Apr 6–10\n' + '─'.repeat(36) + '\n\n';
+  let hasItems = false;
+  MEALS.forEach(meal => {
+    const items = cart[meal.id];
+    if (!items || items.length === 0) return;
+    hasItems = true;
+    text += `${meal.label.toUpperCase()} — ${meal.restaurant}\n`;
+    items.forEach(item => {
+      text += `  • ${item.name}${item.price ? '  ' + item.price : ''}\n`;
+    });
+    text += '\n';
+  });
+  if (!hasItems) { alert('No items in your order yet.'); return; }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.cart-copy-btn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy order to clipboard', 2000);
+  }).catch(() => alert(text));
+}
+
+// ─── NAV ───
 function goTo(mealId) {
   document.getElementById('cover').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -1324,6 +1649,19 @@ function switchTo(mealId) {
     document.querySelector('.meal-tab.active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }, 50);
 }
+
+// ─── INIT ───
+// Wire up all menu items with data-meal and onclick
+document.querySelectorAll('.meal-panel').forEach(panel => {
+  const mealId = panel.id.replace('panel-', '');
+  panel.querySelectorAll('.menu-item').forEach(el => {
+    el.dataset.meal = mealId;
+    el.addEventListener('click', function() { toggleItem(this, mealId); });
+  });
+});
+
+syncMenuUI();
+updateFab();
 </script>
 </body>
 </html>
