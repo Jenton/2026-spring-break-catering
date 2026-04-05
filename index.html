@@ -29,10 +29,9 @@ body {
   background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
-  font-size: 15px;
 }
 
-/* ─── COVER PAGE ─── */
+/* ─── COVER ─── */
 #cover {
   min-height: 100vh;
   background: var(--ink);
@@ -43,202 +42,113 @@ body {
 }
 
 .cover-texture {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(ellipse at 10% 80%, rgba(176,74,43,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 90% 20%, rgba(192,144,64,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(92,122,95,0.08) 0%, transparent 70%);
+    radial-gradient(ellipse at 90% 20%, rgba(192,144,64,0.12) 0%, transparent 50%);
 }
-
 .cover-grid {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .cover-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
   min-height: 100vh;
   padding: 48px 24px 32px;
 }
 
 .cover-eyebrow {
-  font-family: 'Outfit', sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.1s;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 24px;
+  animation: fadeUp 0.6s ease forwards 0.1s; opacity: 0;
 }
-
 .cover-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(42px, 10vw, 72px);
-  font-weight: 400;
-  color: var(--warm-white);
-  line-height: 1.05;
-  margin-bottom: 8px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.2s;
+  font-weight: 400; color: var(--warm-white);
+  line-height: 1.05; margin-bottom: 8px;
+  animation: fadeUp 0.6s ease forwards 0.2s; opacity: 0;
 }
-
-.cover-title em {
-  font-style: italic;
-  color: var(--rust-light);
-}
-
+.cover-title em { font-style: italic; color: var(--rust-light); }
 .cover-subtitle {
-  font-size: 14px;
-  color: rgba(255,255,255,0.45);
-  font-weight: 300;
+  font-size: 14px; color: rgba(255,255,255,0.4); font-weight: 300;
   margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.3s;
+  animation: fadeUp 0.6s ease forwards 0.3s; opacity: 0;
 }
 
-/* MEAL SCHEDULE CARDS */
 .schedule-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--sage-light);
-  font-weight: 500;
-  margin-bottom: 16px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.4s;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--sage-light); font-weight: 500; margin-bottom: 16px;
+  animation: fadeUp 0.6s ease forwards 0.4s; opacity: 0;
 }
 
 .meal-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  opacity: 0;
-  animation: fadeUp 0.7s ease forwards 0.5s;
+  display: flex; flex-direction: column; gap: 8px; flex: 1;
+  animation: fadeUp 0.7s ease forwards 0.5s; opacity: 0;
 }
 
 .meal-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 14px;
+  cursor: pointer; transition: all 0.2s;
+  position: relative; overflow: hidden;
 }
-
 .meal-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  border-radius: 3px 0 0 3px;
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px;
 }
+.meal-card.c1::before { background: var(--rust); }
+.meal-card.c2::before { background: var(--gold); }
+.meal-card.c3::before { background: #1A7A72; }
+.meal-card.c4::before { background: #7A5C8A; }
+.meal-card.c5::before { background: var(--gold); }
+.meal-card.c6::before { background: #8A6020; }
+.meal-card.c7::before { background: var(--sage); }
 
-.meal-card.sunday::before { background: var(--rust); }
-.meal-card.monday-l::before { background: var(--gold); }
-.meal-card.monday-d::before { background: #1A7A72; }
-.meal-card.tuesday-l::before { background: #7A5C8A; }
-.meal-card.tuesday-d::before { background: var(--gold); }
-.meal-card.wednesday-l::before { background: #8A6020; }
-.meal-card.wednesday-d::before { background: var(--sage); }
-
-.meal-card:hover {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.15);
-  transform: translateX(3px);
-}
+.meal-card:hover { background: rgba(255,255,255,0.09); transform: translateX(3px); }
 
 .meal-card-day {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  min-width: 52px;
-  padding-top: 1px;
-  flex-shrink: 0;
+  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  min-width: 52px; padding-top: 1px; flex-shrink: 0;
 }
-
-.meal-card-body { flex: 1; min-width: 0; }
-
 .meal-card-type {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 2px;
+  font-size: 10px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 2px;
 }
-
 .meal-card-restaurant {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--warm-white);
-  line-height: 1.2;
+  font-size: 18px; font-weight: 600; color: var(--warm-white); line-height: 1.2;
 }
-
 .meal-card-reason {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  font-weight: 300;
-  margin-top: 3px;
-  line-height: 1.4;
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  font-weight: 300; margin-top: 3px; line-height: 1.4;
 }
-
-.meal-card-arrow {
-  color: rgba(255,255,255,0.2);
-  font-size: 14px;
-  padding-top: 4px;
-  flex-shrink: 0;
-  transition: color 0.2s;
-}
+.meal-card-arrow { color: rgba(255,255,255,0.2); font-size: 16px; padding-top: 4px; flex-shrink: 0; transition: color 0.2s; }
 .meal-card:hover .meal-card-arrow { color: rgba(255,255,255,0.5); }
 
 .cover-footer {
-  margin-top: 24px;
-  padding-top: 20px;
+  margin-top: 24px; padding-top: 20px;
   border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.7s;
+  display: flex; justify-content: space-between; align-items: center;
+  animation: fadeUp 0.6s ease forwards 0.7s; opacity: 0;
 }
-
 .cover-footer-info {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  font-weight: 300;
-  line-height: 1.6;
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  font-weight: 300; line-height: 1.6;
 }
-
 .enter-btn {
-  background: var(--rust);
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
+  background: var(--rust); color: white; border: none;
+  padding: 12px 20px; border-radius: 10px;
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background 0.2s; white-space: nowrap;
 }
 .enter-btn:hover { background: var(--rust-light); }
 
@@ -247,472 +157,199 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── PLANNER APP ─── */
+/* ─── APP ─── */
 #app { display: none; }
 
 .app-header {
   background: var(--ink);
-  padding: 16px 20px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: sticky; top: 0; z-index: 100;
+  padding: 14px 20px 0;
 }
-
 .app-header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 12px;
 }
-
 .app-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  color: var(--warm-white);
-  font-weight: 600;
+  font-size: 20px; color: var(--warm-white); font-weight: 600;
 }
-
 .back-btn {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.6);
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 12px;
-  cursor: pointer;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6); padding: 6px 12px; border-radius: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 12px; cursor: pointer;
   transition: all 0.2s;
 }
-.back-btn:hover { background: rgba(255,255,255,0.12); color: white; }
+.back-btn:hover { background: rgba(255,255,255,0.14); color: white; }
 
-/* MEAL TABS */
 .meal-tabs {
-  display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  gap: 4px;
-  padding-bottom: 0;
+  display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; gap: 2px;
 }
 .meal-tabs::-webkit-scrollbar { display: none; }
-
 .meal-tab {
-  flex: 0 0 auto;
-  padding: 10px 14px 12px;
-  border: none;
-  background: none;
-  font-family: 'Outfit', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.35);
-  cursor: pointer;
+  flex: 0 0 auto; padding: 8px 14px 12px;
+  border: none; background: none;
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.35); cursor: pointer;
   border-bottom: 2px solid transparent;
-  transition: all 0.2s;
-  white-space: nowrap;
-  line-height: 1.3;
-  text-align: center;
+  transition: all 0.2s; white-space: nowrap; text-align: center; line-height: 1.4;
 }
-.meal-tab .tab-day { font-size: 10px; display: block; letter-spacing: 0.5px; opacity: 0.7; }
-.meal-tab .tab-type { display: block; }
+.meal-tab .tab-day { font-size: 10px; display: block; opacity: 0.7; }
 .meal-tab.active { color: white; border-bottom-color: var(--rust); }
 .meal-tab:hover:not(.active) { color: rgba(255,255,255,0.6); }
 
-/* CONTENT */
+/* ─── CONTENT ─── */
 .content { max-width: 680px; margin: 0 auto; padding: 0 16px 60px; }
 
 .meal-panel { display: none; padding-top: 20px; }
 .meal-panel.active { display: block; }
 
-/* RESTAURANT HEADER */
+/* Restaurant header */
 .rest-header {
-  background: var(--ink);
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
+  background: var(--ink); border-radius: 14px;
+  padding: 20px; margin-bottom: 16px;
+  position: relative; overflow: hidden;
 }
-
-.rest-header-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-}
-
+.rest-header-bg { position: absolute; inset: 0; }
 .rest-header-inner { position: relative; z-index: 1; }
-
-.rest-emoji {
-  font-size: 28px;
-  margin-bottom: 10px;
-  display: block;
-}
-
+.rest-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
 .rest-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--warm-white);
-  line-height: 1.1;
-  margin-bottom: 4px;
+  font-size: 26px; font-weight: 600; color: var(--warm-white);
+  line-height: 1.1; margin-bottom: 4px;
 }
-
-.rest-cuisine {
-  font-size: 12px;
-  color: rgba(255,255,255,0.45);
-  font-weight: 300;
-  margin-bottom: 12px;
-}
-
-.rest-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 14px;
-}
-
+.rest-cuisine { font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 300; margin-bottom: 10px; }
+.rest-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .rest-tag {
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.6);
+  font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
 }
-
-.rest-tag.highlight { background: rgba(176,74,43,0.3); border-color: rgba(176,74,43,0.5); color: #E8906A; }
-.rest-tag.delivery { background: rgba(92,122,95,0.3); border-color: rgba(92,122,95,0.5); color: #A0C8A3; }
-
+.rest-tag.hl { background: rgba(176,74,43,0.3); border-color: rgba(176,74,43,0.5); color: #E8906A; }
+.rest-tag.dl { background: rgba(92,122,95,0.3); border-color: rgba(92,122,95,0.5); color: #A0C8A3; }
 .rest-why {
-  background: rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
-  border-left: 2px solid var(--gold);
+  background: rgba(255,255,255,0.06); border-radius: 8px;
+  padding: 10px 12px; font-size: 12px; color: rgba(255,255,255,0.5);
+  line-height: 1.5; border-left: 2px solid var(--gold);
 }
 .rest-why strong { color: var(--gold); }
 
-/* PERSON BAR */
-.person-bar {
-  background: var(--warm-white);
-  border: 1px solid var(--mist-dark);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 16px;
-}
-
-.person-bar-label {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--slate);
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.person-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.person-chip {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1.5px solid var(--mist-dark);
-  background: white;
-  font-size: 12px;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.15s;
-  color: var(--ink);
-  font-family: 'Outfit', sans-serif;
-}
-
-.person-chip.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: white;
-}
-
-.add-person-btn {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1.5px dashed var(--mist-dark);
-  background: none;
-  font-size: 12px;
-  color: var(--slate);
-  cursor: pointer;
-  font-family: 'Outfit', sans-serif;
-  transition: all 0.15s;
-}
-.add-person-btn:hover { border-color: var(--rust-light); color: var(--rust); }
-
-/* MENU SECTIONS */
-.menu-section { margin-bottom: 20px; }
-
+/* Menu sections */
+.menu-section { margin-bottom: 22px; }
 .menu-section-title {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--slate);
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--slate);
   border-bottom: 1px solid var(--mist);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
+  padding-bottom: 8px; margin-bottom: 10px;
 }
-
 .section-note {
-  font-size: 12px;
-  color: var(--slate);
-  background: var(--mist);
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 10px;
-  line-height: 1.5;
+  font-size: 12px; color: var(--slate); background: var(--mist);
+  border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; line-height: 1.5;
 }
-
 .menu-items { display: flex; flex-direction: column; gap: 7px; }
 
 .menu-item {
-  background: var(--warm-white);
-  border: 1.5px solid var(--mist);
-  border-radius: 10px;
-  padding: 12px 13px;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  user-select: none;
+  background: var(--warm-white); border: 1.5px solid var(--mist);
+  border-radius: 10px; padding: 12px 14px;
+  display: flex; align-items: flex-start; gap: 12px;
 }
-
-.menu-item:hover { border-color: var(--rust-light); background: white; }
-.menu-item.selected { border-color: var(--rust); background: rgba(184,76,43,0.04); }
-
-.item-check {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--mist-dark);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-  transition: all 0.15s;
-  font-size: 11px;
-  color: white;
-  font-weight: 600;
-}
-.menu-item.selected .item-check {
-  background: var(--rust);
-  border-color: var(--rust);
-}
-
 .item-info { flex: 1; min-width: 0; }
-
-.item-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.3;
-}
-
-.item-desc {
-  font-size: 12px;
-  color: var(--slate);
-  margin-top: 3px;
-  font-weight: 300;
-  line-height: 1.4;
-}
-
-.item-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 5px;
-}
-
-.badge {
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 6px;
-  font-weight: 500;
-}
+.item-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.item-desc { font-size: 12px; color: var(--slate); margin-top: 3px; font-weight: 300; line-height: 1.4; }
+.item-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; }
 .badge.kids { background: #FFF3CC; color: #7A5A00; }
-.badge.veg { background: #E8F5E9; color: #2E7D32; }
-.badge.gf { background: #E8EAF6; color: #3949AB; }
-.badge.spicy { background: #FFEBEE; color: #C62828; }
-.badge.popular { background: #FCE4EC; color: #AD1457; }
-.badge.delivery { background: #E0F2F1; color: #00695C; }
-
+.badge.veg  { background: #E8F5E9; color: #2E7D32; }
+.badge.gf   { background: #E8EAF6; color: #3949AB; }
+.badge.spicy{ background: #FFEBEE; color: #C62828; }
+.badge.pop  { background: #FCE4EC; color: #AD1457; }
 .item-price {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--slate);
-  flex-shrink: 0;
-  margin-top: 1px;
-  white-space: nowrap;
+  font-size: 12px; font-weight: 600; color: var(--slate);
+  flex-shrink: 0; white-space: nowrap; padding-top: 1px;
 }
-
-/* SUMMARY PANEL */
-.summary-section {
-  background: var(--warm-white);
-  border: 1.5px solid var(--mist);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.summary-section-header {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--mist);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-}
-
-.summary-section-title {
-  font-weight: 600;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.summary-count {
-  font-size: 11px;
-  color: var(--slate);
-  font-weight: 400;
-}
-
-.summary-list { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-}
-
-.summary-row-item { font-weight: 500; }
-.summary-row-who { color: var(--slate); font-size: 11px; margin-top: 2px; }
-.summary-empty { font-size: 13px; color: var(--slate); font-style: italic; text-align: center; padding: 20px; }
-
-.copy-btn {
-  width: 100%;
-  padding: 14px;
-  background: var(--ink);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 8px;
-}
-.copy-btn:hover { background: #2D2B27; }
-
-/* Note box */
-.note-box {
-  background: rgba(192,144,64,0.08);
-  border: 1px solid rgba(192,144,64,0.25);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 14px;
-  font-size: 12px;
-  color: var(--ink);
-  line-height: 1.5;
-}
-.note-box strong { color: var(--gold); }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ COVER PAGE ═══════════ -->
+<!-- ══════════════ COVER ══════════════ -->
 <div id="cover">
   <div class="cover-texture"></div>
   <div class="cover-grid"></div>
   <div class="cover-inner">
 
     <div class="cover-eyebrow">3360 Westach Way · Sonoma, CA · Apr 6–10</div>
-
     <h1 class="cover-title">The <em>Food</em><br>Plan</h1>
-    <p class="cover-subtitle">3 families · 12 people · 6 adults · 6 kids under 8</p>
+    <p class="cover-subtitle">3 families · 12 people · 6 kids under 8 · one dad on pickup duty</p>
 
     <div class="schedule-label">The Lineup</div>
 
     <div class="meal-cards">
 
-      <div class="meal-card sunday" onclick="goToMeal('sunday-dinner')">
+      <div class="meal-card c1" onclick="goTo('sunday-dinner')">
         <div class="meal-card-day">Sun<br>Dinner</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Dinner</div>
           <div class="meal-card-restaurant">El Molino Central</div>
-          <div class="meal-card-reason">Only restaurant open Sunday. Michelin-recognized Mexican. Kids love the chips & guac and soft serve.</div>
+          <div class="meal-card-reason">Only restaurant open Sunday. Michelin-recognized Mexican. Kids will demolish the chips, guac, and soft serve.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card monday-l" onclick="goToMeal('monday-lunch')">
+      <div class="meal-card c2" onclick="goTo('monday-lunch')">
         <div class="meal-card-day">Mon<br>Lunch</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Lunch</div>
           <div class="meal-card-restaurant">Napa Catering Co.</div>
-          <div class="meal-card-reason">Delivers to the house — no pickup run needed. Easy first full day, everyone gets settled.</div>
+          <div class="meal-card-reason">Delivers to the house — no pickup run needed. Easy first full day while everyone settles in.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card monday-d" onclick="goToMeal('monday-dinner')">
+      <div class="meal-card c3" onclick="goTo('monday-dinner')">
         <div class="meal-card-day">Mon<br>Dinner</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Dinner</div>
           <div class="meal-card-restaurant">Bangkok 9</div>
-          <div class="meal-card-reason">Top-rated Thai. Great contrast after Mexican the night before. Almost everything is GF-adaptable.</div>
+          <div class="meal-card-reason">Top-rated Thai. Great contrast after Mexican. Almost everything is GF-adaptable and spice is adjustable.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card tuesday-l" onclick="goToMeal('tuesday-lunch')">
+      <div class="meal-card c4" onclick="goTo('tuesday-lunch')">
         <div class="meal-card-day">Tue<br>Lunch</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Lunch</div>
           <div class="meal-card-restaurant">Allikai Eatery</div>
-          <div class="meal-card-reason">Peruvian-inspired, something different midweek. Great ceviche and rice bowls for the adults.</div>
+          <div class="meal-card-reason">Peruvian-inspired, something different midweek. Great ceviche for adults, rice bowls for everyone.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card tuesday-d" onclick="goToMeal('tuesday-dinner')">
+      <div class="meal-card c5" onclick="goTo('tuesday-dinner')">
         <div class="meal-card-day">Tue<br>Dinner</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Dinner</div>
           <div class="meal-card-restaurant">Napa Catering Co.</div>
-          <div class="meal-card-reason">Delivery again — easy midweek night. Huge menu variety, great kid options like pasta and sliders.</div>
+          <div class="meal-card-reason">Delivery again — easy midweek night. Huge variety: pasta, sliders, taco bar, BBQ. Great for kids.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card wednesday-l" onclick="goToMeal('wednesday-lunch')">
+      <div class="meal-card c6" onclick="goTo('wednesday-lunch')">
         <div class="meal-card-day">Wed<br>Lunch</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Lunch</div>
           <div class="meal-card-restaurant">Delicious Dish</div>
-          <div class="meal-card-reason">Award-winning wine country deli. Gorgeous boards and salads for a relaxed midday meal.</div>
+          <div class="meal-card-reason">Award-winning wine country deli. Gorgeous boards and salads for a relaxed last-day lunch.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
 
-      <div class="meal-card wednesday-d" onclick="goToMeal('wednesday-dinner')">
+      <div class="meal-card c7" onclick="goTo('wednesday-dinner')">
         <div class="meal-card-day">Wed<br>Dinner</div>
-        <div class="meal-card-body">
+        <div>
           <div class="meal-card-type">Dinner</div>
           <div class="meal-card-restaurant">Spread Kitchen</div>
-          <div class="meal-card-reason">Lebanese-inspired, locally made. Catering only available Wed Apr 8 — perfect last dinner night.</div>
+          <div class="meal-card-reason">Lebanese-inspired, locally made. Catering only available Wed Apr 8 — perfect send-off dinner.</div>
         </div>
         <div class="meal-card-arrow">›</div>
       </div>
@@ -721,78 +358,70 @@ body {
 
     <div class="cover-footer">
       <div class="cover-footer-info">
-        One dad does a 4:30pm pickup<br>for restaurant orders · Napa Catering delivers
+        Tap any meal to browse the menu<br>Tell the group chat what looks good 👆
       </div>
-      <button class="enter-btn" onclick="goToMeal('sunday-dinner')">Build Orders →</button>
+      <button class="enter-btn" onclick="goTo('sunday-dinner')">Browse Menus →</button>
     </div>
 
   </div>
 </div>
 
-<!-- ═══════════ PLANNER APP ═══════════ -->
+<!-- ══════════════ APP ══════════════ -->
 <div id="app">
-
   <div class="app-header">
     <div class="app-header-top">
       <div class="app-title">Sonoma Food Planner</div>
       <button class="back-btn" onclick="showCover()">← Schedule</button>
     </div>
-    <div class="meal-tabs" id="mealTabs">
-      <button class="meal-tab active" onclick="switchMeal('sunday-dinner')"><span class="tab-day">Sunday</span><span class="tab-type">Dinner</span></button>
-      <button class="meal-tab" onclick="switchMeal('monday-lunch')"><span class="tab-day">Monday</span><span class="tab-type">Lunch</span></button>
-      <button class="meal-tab" onclick="switchMeal('monday-dinner')"><span class="tab-day">Monday</span><span class="tab-type">Dinner</span></button>
-      <button class="meal-tab" onclick="switchMeal('tuesday-lunch')"><span class="tab-day">Tuesday</span><span class="tab-type">Lunch</span></button>
-      <button class="meal-tab" onclick="switchMeal('tuesday-dinner')"><span class="tab-day">Tuesday</span><span class="tab-type">Dinner</span></button>
-      <button class="meal-tab" onclick="switchMeal('wednesday-lunch')"><span class="tab-day">Wednesday</span><span class="tab-type">Lunch</span></button>
-      <button class="meal-tab" onclick="switchMeal('wednesday-dinner')"><span class="tab-day">Wednesday</span><span class="tab-type">Dinner</span></button>
-      <button class="meal-tab" onclick="switchMeal('summary')"><span class="tab-day">&nbsp;</span><span class="tab-type">📋 Summary</span></button>
+    <div class="meal-tabs">
+      <button class="meal-tab" onclick="switchTo('sunday-dinner')"><span class="tab-day">Sunday</span>Dinner</button>
+      <button class="meal-tab" onclick="switchTo('monday-lunch')"><span class="tab-day">Monday</span>Lunch</button>
+      <button class="meal-tab" onclick="switchTo('monday-dinner')"><span class="tab-day">Monday</span>Dinner</button>
+      <button class="meal-tab" onclick="switchTo('tuesday-lunch')"><span class="tab-day">Tuesday</span>Lunch</button>
+      <button class="meal-tab" onclick="switchTo('tuesday-dinner')"><span class="tab-day">Tuesday</span>Dinner</button>
+      <button class="meal-tab" onclick="switchTo('wednesday-lunch')"><span class="tab-day">Wednesday</span>Lunch</button>
+      <button class="meal-tab" onclick="switchTo('wednesday-dinner')"><span class="tab-day">Wednesday</span>Dinner</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ── SUNDAY DINNER: El Molino ── -->
-    <div class="meal-panel active" id="panel-sunday-dinner">
+    <div class="meal-panel" id="panel-sunday-dinner">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(184,76,43,0.4) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(184,76,43,.4) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🌮</span>
           <div class="rest-name">El Molino Central</div>
-          <div class="rest-cuisine">Michelin-Recognized Mexican · 11 Central Ave, Sonoma</div>
+          <div class="rest-cuisine">Michelin-Recognized Mexican · 11 Central Ave · 707-939-1010</div>
           <div class="rest-tags">
-            <span class="rest-tag">Sunday Dinner</span>
-            <span class="rest-tag highlight">Only option open Sunday</span>
-            <span class="rest-tag">Call to order: 707-939-1010</span>
+            <span class="rest-tag hl">Only option open Sunday</span>
+            <span class="rest-tag">Call to order</span>
           </div>
-          <div class="rest-why"><strong>Why tonight:</strong> Every other restaurant is closed Sunday. El Molino is open daily and is genuinely excellent — Michelin-recognized, handmade tortillas, and the kids will demolish the chips, guac, and soft serve.</div>
+          <div class="rest-why"><strong>Note:</strong> Menu rotates seasonally — call to confirm availability. Party menu is designed for groups. A dozen enchiladas + a dozen tamales + chips & guac is a solid base for 12.</div>
         </div>
       </div>
 
-      <div id="persons-sunday-dinner"></div>
-
       <div class="menu-section">
-        <div class="menu-section-title">Enchiladas — ½ doz / Dozen</div>
+        <div class="menu-section-title">Enchiladas — ½ Dozen / Dozen</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Chicken Suizas Enchiladas')" data-item="Chicken Suizas Enchiladas">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Chicken Suizas</div>
               <div class="item-desc">Green sauce enchiladas with chicken</div>
-              <div class="item-badges"><span class="badge kids">Kid-friendly</span><span class="badge popular">Top pick</span></div>
+              <div class="item-badges"><span class="badge kids">Kid-friendly</span><span class="badge pop">Top pick</span></div>
             </div>
             <div class="item-price">$35 / $68</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Chicken Mole Enchiladas')" data-item="Chicken Mole Enchiladas">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Chicken Mole</div>
               <div class="item-desc">Rich 18-ingredient Oaxacan red mole</div>
-              <div class="item-badges"><span class="badge popular">Michelin pick</span></div>
+              <div class="item-badges"><span class="badge pop">Michelin pick</span></div>
             </div>
             <div class="item-price">$35 / $68</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Vegetable Enchiladas')" data-item="Vegetable Enchiladas">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Vegetable</div>
               <div class="item-badges"><span class="badge veg">Veg</span></div>
@@ -803,29 +432,24 @@ body {
       </div>
 
       <div class="menu-section">
-        <div class="menu-section-title">Tamales — ½ doz / Dozen</div>
+        <div class="menu-section-title">Tamales — ½ Dozen / Dozen</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Chicken Mole Tamales')" data-item="Chicken Mole Tamales">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
-              <div class="item-name">Chicken Mole Tamales</div>
-              <div class="item-badges"><span class="badge popular">Michelin pick</span></div>
+              <div class="item-name">Chicken Mole</div>
+              <div class="item-badges"><span class="badge pop">Michelin pick</span></div>
             </div>
             <div class="item-price">$32 / $62</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Seasonal Vegetable Tamales')" data-item="Seasonal Vegetable Tamales">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
-              <div class="item-name">Seasonal Vegetable Tamales</div>
+              <div class="item-name">Seasonal Vegetable</div>
               <div class="item-badges"><span class="badge veg">Veg</span></div>
             </div>
             <div class="item-price">$26 / $48</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Pork Tamales')" data-item="Pork Tamales">
-            <div class="item-check">✓</div>
-            <div class="item-info">
-              <div class="item-name">Pork Tamales</div>
-            </div>
+          <div class="menu-item">
+            <div class="item-info"><div class="item-name">Pork</div></div>
             <div class="item-price">$32 / $62</div>
           </div>
         </div>
@@ -834,22 +458,18 @@ body {
       <div class="menu-section">
         <div class="menu-section-title">À La Carte</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Chile Rellenos')" data-item="Chile Rellenos">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info"><div class="item-name">Chile Rellenos</div></div>
             <div class="item-price">$14 ea</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Beef Birria Taco Kit')" data-item="Beef Birria Taco Kit">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Beef Birria Taco Kit</div>
               <div class="item-desc">8 tacos per pound</div>
-              <div class="item-badges"><span class="badge popular">Popular</span></div>
             </div>
             <div class="item-price">$28/lb</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Wild Halibut Ceviche')" data-item="Wild Halibut Ceviche">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info"><div class="item-name">Wild Halibut Ceviche</div></div>
             <div class="item-price">$32/lb</div>
           </div>
@@ -859,45 +479,44 @@ body {
       <div class="menu-section">
         <div class="menu-section-title">Sides & Salsas — Pint / Quart</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Chips')" data-item="Chips">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Chips</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span></div>
             </div>
             <div class="item-price">$11/lb</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Guacamole')" data-item="Guacamole">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Guacamole</div>
-              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge popular">Must order</span></div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge pop">Must order</span></div>
             </div>
             <div class="item-price">$13 / $26</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Mole Sauce')" data-item="Mole Sauce">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info"><div class="item-name">Mole Sauce</div></div>
             <div class="item-price">$9 / $18</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Salsa Rojo')" data-item="Salsa Rojo">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info"><div class="item-name">Salsa Rojo</div></div>
             <div class="item-price">$6 / $12</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Salsa Verde')" data-item="Salsa Verde">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info"><div class="item-name">Salsa Verde</div></div>
             <div class="item-price">$7 / $14</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Beans')" data-item="Beans">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Beans</div><div class="item-badges"><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Beans</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$7 / $14</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'sunday-dinner','Cabbage Salad')" data-item="Cabbage Salad">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Cabbage Salad</div><div class="item-badges"><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Cabbage Salad</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$4 / $8</div>
           </div>
         </div>
@@ -907,26 +526,23 @@ body {
     <!-- ── MONDAY LUNCH: Napa Catering ── -->
     <div class="meal-panel" id="panel-monday-lunch">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(192,144,64,0.35) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(192,144,64,.35) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🚚</span>
           <div class="rest-name">Napa Catering Co.</div>
-          <div class="rest-cuisine">Full-Service Drop-Off Catering · napacateringcompany.com</div>
+          <div class="rest-cuisine">Drop-Off Catering · napacateringcompany.com · 877-789-4377</div>
           <div class="rest-tags">
-            <span class="rest-tag">Monday Lunch</span>
-            <span class="rest-tag delivery">Delivers to house</span>
-            <span class="rest-tag">877-789-4377</span>
+            <span class="rest-tag dl">Delivers to house</span>
+            <span class="rest-tag">Small tray serves 10 · Large serves 30</span>
           </div>
-          <div class="rest-why"><strong>Why today:</strong> They deliver right to the Airbnb — no pickup needed. Perfect for the first full day when everyone's still settling in. Small trays serve 10, which is close enough for 12.</div>
+          <div class="rest-why"><strong>Note:</strong> They deliver right to the Airbnb — no pickup needed. For 12 people, one small tray of a few items covers lunch easily.</div>
         </div>
       </div>
-      <div id="persons-monday-lunch"></div>
+
       <div class="menu-section">
         <div class="menu-section-title">Sandwiches & Platters</div>
-        <div class="section-note">Small serves 10 · Large serves 30. For 12 people, order 1 small + extras or mix items.</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Assorted Sandwich Platter')" data-item="Assorted Sandwich Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Assorted Sandwich Platter</div>
               <div class="item-desc">40 two-inch sandwiches: pepper turkey, roast beef, ham, vegetarian</div>
@@ -934,8 +550,7 @@ body {
             </div>
             <div class="item-price">$132</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Assorted Pinwheel Platter')" data-item="Assorted Pinwheel Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Assorted Pinwheel Platter</div>
               <div class="item-desc">60 bite-size pinwheels: roasted chicken & pepper, turkey & swiss, spinach & mushroom</div>
@@ -943,16 +558,14 @@ body {
             </div>
             <div class="item-price">$225</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Meats & Cheese Platter')" data-item="Meats & Cheese Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Meats & Cheese Platter</div>
               <div class="item-desc">Salami, turkey, ham with swiss, cheddar, jack. Add bread & condiments separately.</div>
             </div>
             <div class="item-price">$77 / $184</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Hummus Wrap Platter')" data-item="Hummus Wrap Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Hummus Wrap Platter</div>
               <div class="item-desc">Hummus, lettuce, tomatoes, red onions, olives, feta, roasted red peppers</div>
@@ -962,25 +575,26 @@ body {
           </div>
         </div>
       </div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Salads</div>
+        <div class="menu-section-title">Salads — Small (10) / Large (30)</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Classic Caesar Salad')" data-item="Classic Caesar Salad">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Classic Caesar Salad</div><div class="item-desc">Romaine, parmesan, croutons, house Caesar dressing</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Classic Caesar Salad</div>
+              <div class="item-desc">Romaine, parmesan, croutons, house Caesar dressing</div>
+            </div>
             <div class="item-price">$50 / $107</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Pear & Candied Walnut Salad')" data-item="Pear & Candied Walnut Salad">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Pear & Candied Walnut Salad</div>
               <div class="item-desc">Mixed greens, Roquefort, candied walnuts, fresh pears, onion vinaigrette</div>
-              <div class="item-badges"><span class="badge popular">Most popular</span><span class="badge veg">Veg</span></div>
+              <div class="item-badges"><span class="badge pop">Most popular</span><span class="badge veg">Veg</span></div>
             </div>
             <div class="item-price">$64 / $143</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Mediterranean Couscous Salad')" data-item="Mediterranean Couscous Salad">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Mediterranean Couscous Salad</div>
               <div class="item-desc">Cucumbers, red onions, olives, cherry tomatoes, lemon, feta, dill</div>
@@ -988,8 +602,7 @@ body {
             </div>
             <div class="item-price">$70 / $161</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Fruit Salad')" data-item="Fruit Salad">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Fruit Salad</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
@@ -998,17 +611,23 @@ body {
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Add-Ons</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Fresh Vegetable Platter')" data-item="Fresh Vegetable Platter">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Fresh Vegetable Platter</div><div class="item-desc">Broccoli, cauliflower, carrots, celery, bell peppers with house dip</div><div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Fresh Vegetable Platter</div>
+              <div class="item-desc">Broccoli, cauliflower, carrots, celery, bell peppers with house dip</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$83 / $138</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-lunch','Cookies or Brownies')" data-item="Cookies or Brownies">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Cookies or Brownies</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Cookies or Brownies</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$45 / $120</div>
           </div>
         </div>
@@ -1018,132 +637,122 @@ body {
     <!-- ── MONDAY DINNER: Bangkok 9 ── -->
     <div class="meal-panel" id="panel-monday-dinner">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(26,122,114,0.4) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(26,122,114,.4) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🍜</span>
           <div class="rest-name">Bangkok 9</div>
           <div class="rest-cuisine">Authentic Thai · 201 W Napa St #9 · 707-938-8477</div>
           <div class="rest-tags">
-            <span class="rest-tag">Monday Dinner</span>
-            <span class="rest-tag highlight">Dad pickup 4:30pm</span>
+            <span class="rest-tag hl">Dad pickup 4:30pm</span>
             <span class="rest-tag">Catering pickup menu</span>
           </div>
-          <div class="rest-why"><strong>Why tonight:</strong> Great Thai variety and a contrast to Mexican on Sunday. Almost everything can be made GF. Tray sizes are designed for groups — Large serves 10–12 perfectly.</div>
+          <div class="rest-why"><strong>Note:</strong> Large trays serve 10–12. Mix of 3–4 large trays is plenty for the group. Spice level adjustable on most dishes — ask for mild for the kids.</div>
         </div>
       </div>
-      <div id="persons-monday-dinner"></div>
-      <div class="section-note" style="margin-top:4px;">S = Small (5 people) · M = Medium (8–10) · L = Large (10–12)</div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Appetizers</div>
+        <div class="menu-section-title">Appetizers — S (5 people) · M (8–10) · L (10–12)</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Crispy Thai Spring Rolls')" data-item="Crispy Thai Spring Rolls">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Crispy Thai Spring Rolls</div>
               <div class="item-desc">Mixed vegetables, clear noodles, sweet & sour sauce</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span></div>
             </div>
-            <div class="item-price">S$40 M$80 L$150</div>
+            <div class="item-price">$40 · $80 · $150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Fresh Rolls')" data-item="Fresh Rolls">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Chicken Satay</div>
+              <div class="item-desc">Marinated chicken skewers, peanut sauce</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge pop">Popular</span></div>
+            </div>
+            <div class="item-price">$45 · $90 · $135</div>
+          </div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Fresh Rolls (Shrimp or Tofu)</div>
               <div class="item-desc">Rice paper, lettuce, mint, cilantro, veg, peanut sauce</div>
               <div class="item-badges"><span class="badge gf">GF</span></div>
             </div>
-            <div class="item-price">S$50 M$95 L$180</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Chicken Satay')" data-item="Chicken Satay">
-            <div class="item-check">✓</div>
-            <div class="item-info">
-              <div class="item-name">Chicken Satay</div>
-              <div class="item-desc">Marinated chicken skewers, peanut sauce</div>
-              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge popular">Popular</span></div>
-            </div>
-            <div class="item-price">S$45 M$90 L$135</div>
+            <div class="item-price">$50 · $95 · $180</div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Curries</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Pumpkin Yellow Curry')" data-item="Pumpkin Yellow Curry">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Pumpkin Yellow Curry (Chicken or Tofu)</div>
-              <div class="item-desc">Creamy yellow curry, kabocha pumpkin, bell pepper, Thai basil</div>
-              <div class="item-badges"><span class="badge popular">Fan fave</span><span class="badge gf">GF</span></div>
+              <div class="item-desc">Creamy yellow curry, kabocha pumpkin, bell pepper, Thai basil. Jasmine rice.</div>
+              <div class="item-badges"><span class="badge pop">Fan fave</span><span class="badge gf">GF</span></div>
             </div>
-            <div class="item-price">S$85 M$145 L$190</div>
+            <div class="item-price">$85 · $145 · $190</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Green Curry')" data-item="Green Curry">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Green Curry (Chicken or Tofu)</div>
               <div class="item-desc">Bamboo shoots, peas, bell pepper, coconut milk, Thai basil. Always spicy.</div>
               <div class="item-badges"><span class="badge spicy">Always spicy</span><span class="badge gf">GF</span></div>
             </div>
-            <div class="item-price">S$80 M$125 L$180</div>
+            <div class="item-price">$80 · $125 · $180</div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Noodles & Rice</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Pad Thai')" data-item="Pad Thai">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Pad Thai (Prawns & Chicken)</div>
-              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge popular">#1 most liked</span></div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge pop">#1 most liked</span></div>
             </div>
-            <div class="item-price">S$80 M$150 L$190</div>
+            <div class="item-price">$80 · $150 · $190</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Classic Fried Rice')" data-item="Classic Fried Rice">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Classic Fried Rice (Chicken or Tofu)</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span></div>
             </div>
-            <div class="item-price">S$60 M$120 L$160</div>
+            <div class="item-price">$60 · $120 · $160</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Pineapple Fried Rice')" data-item="Pineapple Fried Rice">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Pineapple Fried Rice (Chicken or Tofu)</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span></div>
             </div>
-            <div class="item-price">S$65 M$125 L$165</div>
+            <div class="item-price">$65 · $125 · $165</div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Mains</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Spicy Basil Chicken')" data-item="Spicy Basil Chicken">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Spicy Basil Chicken</div>
               <div class="item-badges"><span class="badge spicy">Spicy</span></div>
             </div>
-            <div class="item-price">S$80 M$120 L$180</div>
+            <div class="item-price">$80 · $120 · $180</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Spicy Eggplant')" data-item="Spicy Eggplant">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Spicy Eggplant (Chicken or Tofu)</div>
               <div class="item-badges"><span class="badge spicy">Spicy</span><span class="badge veg">Veg opt.</span></div>
             </div>
-            <div class="item-price">S$80 M$120 L$180</div>
+            <div class="item-price">$80 · $120 · $180</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'monday-dinner','Papaya Salad')" data-item="Papaya Salad">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Papaya Salad</div>
               <div class="item-desc">Shredded green papaya, tomato, green bean, peanuts, lime dressing</div>
               <div class="item-badges"><span class="badge gf">GF</span></div>
             </div>
-            <div class="item-price">S$45 M$65 L$100</div>
+            <div class="item-price">$45 · $65 · $100</div>
           </div>
         </div>
       </div>
@@ -1152,62 +761,58 @@ body {
     <!-- ── TUESDAY LUNCH: Allikai ── -->
     <div class="meal-panel" id="panel-tuesday-lunch">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(122,92,138,0.4) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(122,92,138,.4) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🫙</span>
           <div class="rest-name">Allikai Eatery</div>
           <div class="rest-cuisine">Peruvian-Inspired · 678 W Napa St · 707-934-4900</div>
           <div class="rest-tags">
-            <span class="rest-tag">Tuesday Lunch</span>
-            <span class="rest-tag highlight">Dad pickup by 5:30pm</span>
+            <span class="rest-tag hl">Dad pickup by 5:30pm</span>
             <span class="rest-tag">contact@allikaigroup.com</span>
           </div>
-          <div class="rest-why"><strong>Why today:</strong> Something genuinely different midweek — Peruvian-inspired, beautifully presented. Great ceviche for the adults, rice bowls are crowd-pleasing and vegan/GF. Closed weekends so Tuesday is the window.</div>
+          <div class="rest-why"><strong>Note:</strong> Something genuinely different midweek. Rice bowl platter for 12 at $126 is a great anchor — add ceviche and a salad alongside it.</div>
         </div>
       </div>
-      <div id="persons-tuesday-lunch"></div>
-      <div class="menu-section">
-        <div class="menu-section-title">Sandwiches</div>
-        <div class="section-note">6 half-sandos / 12 half-sandos / 24 half-sandos</div>
-        <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Sandwich Platter (12 half-sandos)')" data-item="Sandwich Platter (12 half-sandos)">
-            <div class="item-check">✓</div>
-            <div class="item-info">
-              <div class="item-name">Sandwich Platter</div>
-              <div class="item-desc">Allikai signature sandwiches including Butifarra (house pork jamon, fermented pepper aioli, little gem, pickled red onion)</div>
-            </div>
-            <div class="item-price">$80–124 / 12</div>
-          </div>
-        </div>
-      </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Bowls</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Rice Bowl Platter (up to 12)')" data-item="Rice Bowl Platter (up to 12)">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Rice Bowl Platter (up to 12)</div>
               <div class="item-desc">Jasmine rice, seasonal veg, house ferments, shiitake mushrooms, herbs, salsa macha, miso sauce</div>
-              <div class="item-badges"><span class="badge veg">Vegan</span><span class="badge gf">GF</span><span class="badge popular">Great value</span></div>
+              <div class="item-badges"><span class="badge veg">Vegan</span><span class="badge gf">GF</span><span class="badge pop">Great value</span></div>
             </div>
             <div class="item-price">$126</div>
           </div>
         </div>
       </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Sandwiches</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Sandwich Platter (12 half-sandos)</div>
+              <div class="item-desc">Allikai signature sandwiches incl. Butifarra: house pork jamon, fermented pepper aioli, little gem, pickled red onion</div>
+            </div>
+            <div class="item-price">$80–124</div>
+          </div>
+        </div>
+      </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Ceviche & Salads</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Ceviche Mixto Platter')" data-item="Ceviche Mixto Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Ceviche Mixto Platter</div>
               <div class="item-desc">Kanpachi, shrimp, seasonal fruit, leche de tigre, fresh radish, sweet potato</div>
-              <div class="item-badges"><span class="badge gf">GF</span><span class="badge popular">Standout dish</span></div>
+              <div class="item-badges"><span class="badge gf">GF</span><span class="badge pop">Standout dish</span></div>
             </div>
             <div class="item-price">$56–224</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Shiitake Ceviche Platter')" data-item="Shiitake Ceviche Platter">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Shiitake Ceviche Platter</div>
               <div class="item-desc">Shiitakes, seasonal fruit, leche de tigre, radish, sweet potato</div>
@@ -1215,8 +820,7 @@ body {
             </div>
             <div class="item-price">$51–204</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Seasonal Salad (up to 12)')" data-item="Seasonal Salad (up to 12)">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Seasonal Salad (up to 12)</div>
               <div class="item-desc">Little gem, fresh herbs, radish, manchego, toasted nuts, herb buttermilk vinaigrette</div>
@@ -1224,17 +828,7 @@ body {
             </div>
             <div class="item-price">$53</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Potato Causa')" data-item="Potato Causa">
-            <div class="item-check">✓</div>
-            <div class="item-info">
-              <div class="item-name">Potato Causa</div>
-              <div class="item-desc">Potato, avocado, egg, aioli, olives</div>
-              <div class="item-badges"><span class="badge gf">GF</span></div>
-            </div>
-            <div class="item-price">$32–125</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Allikai Signature Potato Salad')" data-item="Allikai Signature Potato Salad">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Signature Potato Salad</div>
               <div class="item-desc">Potatoes, beets, carrots, house mayo, roasted scallions</div>
@@ -1244,11 +838,11 @@ body {
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Cheese & Charcuterie</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Cheese & Charcuterie Board')" data-item="Cheese & Charcuterie Board">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Cheese & Charcuterie Board</div>
               <div class="item-desc">3 types house-made charcuterie, 2 cheeses, house mustard, pickles, fruit jam, toast points</div>
@@ -1257,27 +851,28 @@ body {
           </div>
         </div>
       </div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Sweets</div>
+        <div class="menu-section-title">Sweets — $5–5.25 each</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Alfajor Cookies')" data-item="Alfajor Cookies">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Alfajor</div>
               <div class="item-desc">Peruvian sandwich cookie, dulce de leche, anise seed, powdered sugar</div>
               <div class="item-badges"><span class="badge kids">Kids love it</span></div>
             </div>
-            <div class="item-price">$5 ea</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Carrot Cake')" data-item="Carrot Cake">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Carrot Cake</div><div class="item-desc">Yogurt whip, pecan, candied orange peel, miso caramel</div></div>
-            <div class="item-price">$5 ea</div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Carrot Cake</div>
+              <div class="item-desc">Yogurt whip, pecan, candied orange peel, miso caramel</div>
+            </div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-lunch','Panna Cotta')" data-item="Panna Cotta">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Panna Cotta</div><div class="item-desc">Vanilla custard, kiwi gel, almond crumble, fresh mint, orange segments</div></div>
-            <div class="item-price">$5.25 ea</div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Panna Cotta</div>
+              <div class="item-desc">Vanilla custard, kiwi gel, almond crumble, fresh mint, orange segments</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1286,130 +881,145 @@ body {
     <!-- ── TUESDAY DINNER: Napa Catering ── -->
     <div class="meal-panel" id="panel-tuesday-dinner">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(192,144,64,0.35) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(192,144,64,.35) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🚚</span>
           <div class="rest-name">Napa Catering Co.</div>
-          <div class="rest-cuisine">Full-Service Drop-Off Catering · napacateringcompany.com</div>
+          <div class="rest-cuisine">Drop-Off Catering · napacateringcompany.com · 877-789-4377</div>
           <div class="rest-tags">
-            <span class="rest-tag">Tuesday Dinner</span>
-            <span class="rest-tag delivery">Delivers to house</span>
-            <span class="rest-tag">877-789-4377</span>
+            <span class="rest-tag dl">Delivers to house</span>
+            <span class="rest-tag">Small tray serves 10 · Large serves 30</span>
           </div>
-          <div class="rest-why"><strong>Why tonight:</strong> Delivery again midweek — let everyone relax. Huge hot entree selection with genuinely great kid options: spaghetti, fettuccini alfredo, hot dogs, hamburgers, taco bar.</div>
+          <div class="rest-why"><strong>Note:</strong> Great night to go big on kid favorites — taco bar, pasta, sliders. One or two hot entrees plus a side or two is plenty for 12.</div>
         </div>
       </div>
-      <div id="persons-tuesday-dinner"></div>
+
       <div class="menu-section">
         <div class="menu-section-title">Hot Entrees — Small (10) / Large (30)</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Grilled Hamburgers')" data-item="Grilled Hamburgers">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Grilled Hamburgers</div><div class="item-desc">Soft buns, lettuce, tomatoes, cheese, onions, ketchup, mustard, relish</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$137 / $350</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Grilled Hot Dogs')" data-item="Grilled Hot Dogs">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Grilled Hot Dogs</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$126 / $290</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','BBQ Chicken')" data-item="BBQ Chicken">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">BBQ Chicken</div><div class="item-desc">Wings, thighs, breast in famous BBQ sauce</div><div class="item-badges"><span class="badge kids">Kid-friendly</span></div></div>
-            <div class="item-price">$126 / $275</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Pulled Pork Sliders')" data-item="Pulled Pork Sliders">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Pulled Pork Sliders</div><div class="item-desc">Hawaiian sweet rolls, BBQ pulled pork, coleslaw</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$131 / $290</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Tri-Tip Sliders')" data-item="Tri-Tip Sliders">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Tri-Tip Sliders</div><div class="item-desc">Hawaiian sweet rolls, roasted tri-tip, coleslaw, BBQ sauce</div></div>
-            <div class="item-price">$137 / $300</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Lemon-Herb Chicken')" data-item="Lemon-Herb Chicken">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Lemon-Herb Chicken</div><div class="item-desc">Roasted chicken seared in lemon and herbs</div></div>
-            <div class="item-price">$126 / $275</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Sirloin Steak')" data-item="Sirloin Steak">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Sirloin Steak</div><div class="item-desc">Seared to medium, balsamic drizzle</div></div>
-            <div class="item-price">$225 / $580</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','BBQ Ribs')" data-item="BBQ Ribs">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">BBQ Ribs</div><div class="item-desc">Fall-off-the-bone pork ribs in famous BBQ sauce</div></div>
-            <div class="item-price">$174 / $440</div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-section">
-        <div class="menu-section-title">Pastas</div>
-        <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Spaghetti')" data-item="Spaghetti">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Spaghetti</div><div class="item-desc">Choice of garlic, marinara, or bolognese</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$82 / $191</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Fettuccini Alfredo')" data-item="Fettuccini Alfredo">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Fettuccini Alfredo</div><div class="item-desc">Bechamel-style alfredo with blanched broccoli and carrots</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$120 / $235</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Traditional Lasagna')" data-item="Traditional Lasagna">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Traditional Lasagna</div><div class="item-desc">3-cheese with classic meat sauce</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
-            <div class="item-price">$120 / $235</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Chicken Penne')" data-item="Chicken Penne">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Chicken Penne</div><div class="item-desc">Roasted chicken, mushrooms, red onions, artichoke hearts, pesto cream sauce</div></div>
-            <div class="item-price">$120 / $235</div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-section">
-        <div class="menu-section-title">International</div>
-        <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Make Your Own Taco Bar')" data-item="Make Your Own Taco Bar">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Make Your Own Taco Bar</div>
-              <div class="item-desc">Beef & chicken, roasted veg, black beans, cheese, lettuce, tomatoes, sour cream, mild salsa, tortillas</div>
-              <div class="item-badges"><span class="badge kids">Kids LOVE it</span><span class="badge popular">Fan fave</span></div>
+              <div class="item-desc">Beef & chicken, roasted veg, black beans, cheese, lettuce, tomatoes, sour cream, salsa, tortillas</div>
+              <div class="item-badges"><span class="badge kids">Kids LOVE it</span><span class="badge pop">Fan fave</span></div>
             </div>
             <div class="item-price">$186 / $445</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Enchiladas')" data-item="Enchiladas">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Enchiladas (Chicken or Beef)</div><div class="item-desc">Corn tortillas, specialty sauce, shredded cheddar</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Grilled Hamburgers</div>
+              <div class="item-desc">Soft buns, lettuce, tomatoes, cheese, onions, ketchup, mustard, relish</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$137 / $350</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Grilled Hot Dogs</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$126 / $290</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">BBQ Chicken</div>
+              <div class="item-desc">Wings, thighs, breast in BBQ sauce</div>
+              <div class="item-badges"><span class="badge kids">Kid-friendly</span></div>
+            </div>
             <div class="item-price">$126 / $275</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Pulled Pork Sliders</div>
+              <div class="item-desc">Hawaiian sweet rolls, BBQ pulled pork, coleslaw</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$131 / $290</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Tri-Tip Sliders</div>
+              <div class="item-desc">Hawaiian sweet rolls, roasted tri-tip, coleslaw, BBQ sauce</div>
+            </div>
+            <div class="item-price">$137 / $300</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">BBQ Ribs</div>
+              <div class="item-desc">Fall-off-the-bone pork ribs in BBQ sauce</div>
+            </div>
+            <div class="item-price">$174 / $440</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Sirloin Steak</div>
+              <div class="item-desc">Seared to medium, balsamic drizzle</div>
+            </div>
+            <div class="item-price">$225 / $580</div>
           </div>
         </div>
       </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Pastas</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Spaghetti</div>
+              <div class="item-desc">Choice of garlic, marinara, or bolognese</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$82 / $191</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Fettuccini Alfredo</div>
+              <div class="item-desc">Bechamel-style alfredo with blanched broccoli and carrots</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$120 / $235</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Traditional Lasagna</div>
+              <div class="item-desc">3-cheese with classic meat sauce</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
+            <div class="item-price">$120 / $235</div>
+          </div>
+        </div>
+      </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Sides</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Roasted Red Potatoes')" data-item="Roasted Red Potatoes">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Roasted Red Potatoes w/ Rosemary</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div></div>
-            <div class="item-price">$70 / $166</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Roasted Seasonal Vegetables')" data-item="Roasted Seasonal Vegetables">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Roasted Seasonal Vegetables</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div></div>
-            <div class="item-price">$114 / $171</div>
-          </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Make Your Own Potato Bar')" data-item="Make Your Own Potato Bar">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Make Your Own Potato Bar</div><div class="item-desc">Baked or mashed, green onions, bacon bits, cheddar, sour cream, herbed butter</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Make Your Own Potato Bar</div>
+              <div class="item-desc">Baked or mashed, green onions, bacon bits, cheddar, sour cream, herbed butter</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$186 / $400</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'tuesday-dinner','Guacamole & Chips')" data-item="Guacamole & Chips">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Guacamole & Chips</div><div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Roasted Red Potatoes w/ Rosemary</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
+            </div>
+            <div class="item-price">$70 / $166</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Roasted Seasonal Vegetables</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
+            </div>
+            <div class="item-price">$114 / $171</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Guacamole & Chips</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$107 / $225</div>
           </div>
         </div>
@@ -1419,83 +1029,118 @@ body {
     <!-- ── WEDNESDAY LUNCH: Delicious Dish ── -->
     <div class="meal-panel" id="panel-wednesday-lunch">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(138,96,32,0.4) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(138,96,32,.4) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🧀</span>
           <div class="rest-name">Delicious Dish Provisions</div>
-          <div class="rest-cuisine">Wine Country Deli & Catering · 565 5th St W · orders@deliciousdishsf.com</div>
+          <div class="rest-cuisine">Wine Country Deli · 565 5th St W · orders@deliciousdishsf.com</div>
           <div class="rest-tags">
-            <span class="rest-tag">Wednesday Lunch</span>
-            <span class="rest-tag highlight">Dad pickup by 6:30pm</span>
+            <span class="rest-tag hl">Dad pickup by 6:30pm</span>
             <span class="rest-tag">Best Caterer 2019–2025</span>
             <span class="rest-tag">$749 minimum</span>
           </div>
-          <div class="rest-why"><strong>Why today:</strong> Award-winning wine country deli with gorgeous boards and seasonal salads — perfect relaxed midday spread before the big Lebanese dinner tonight. Min order $749, so plan to mix several items.</div>
+          <div class="rest-why"><strong>Note:</strong> $749 minimum, so plan to mix several boards and salads. Each board serves 10–12. A couple of boards plus two salads easily clears the minimum and feeds everyone well.</div>
         </div>
       </div>
-      <div id="persons-wednesday-lunch"></div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Boards & Platters (each serves 10–12 · $150–225)</div>
+        <div class="menu-section-title">Boards & Platters — Each serves 10–12</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Burrata Bar')" data-item="Burrata Bar">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Burrata Bar</div><div class="item-desc">Tomato, prosciutto, peach, arugula, pistachio, balsamic, sourdough toasts</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Burrata Bar</div>
+              <div class="item-desc">Tomato, prosciutto, peach, arugula, pistachio, balsamic, sourdough toasts</div>
+            </div>
             <div class="item-price">$150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Mediterranean Platter')" data-item="Mediterranean Platter">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Mediterranean Platter</div><div class="item-desc">Babaganoush, tzatziki, harissa, olives, pickled veg, grilled pita, marinated feta, mixed nuts, grapes, basil</div><div class="item-badges"><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Mediterranean Platter</div>
+              <div class="item-desc">Babaganoush, tzatziki, harissa, olives, pickled veg, grilled pita, marinated feta, mixed nuts, grapes</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Charcuterie Board')" data-item="Charcuterie Board">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Charcuterie Board</div><div class="item-desc">Sierra Nevada grain mustard, cherry jam, cornichon, hot pepper honey, prosciutto, capacola, sopressata, sourdough baguette</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Charcuterie Board</div>
+              <div class="item-desc">Grain mustard, cherry jam, cornichon, hot pepper honey, prosciutto, capacola, sopressata, sourdough baguette</div>
+            </div>
             <div class="item-price">$150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Barceloneta Board')" data-item="Barceloneta Board">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Barceloneta Board</div><div class="item-desc">Manchego, mahon, drunken goat, membrillo, rosemary almonds, padron peppers, chorizo, castelvetrano olives, prosciutto-wrapped melon</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Barceloneta Board</div>
+              <div class="item-desc">Manchego, mahon, drunken goat, membrillo, rosemary almonds, padron peppers, chorizo, castelvetrano olives, prosciutto-wrapped melon</div>
+            </div>
             <div class="item-price">$150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Wine Country Picnic Platter')" data-item="Wine Country Picnic Platter">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Wine Country Picnic Platter</div><div class="item-desc">Red wine caramelized onion dip, crudité, country pâté, herbed olives, marinated artichokes, crackers, sharp cheddar</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Wine Country Picnic Platter</div>
+              <div class="item-desc">Caramelized onion dip, crudité, country pâté, herbed olives, marinated artichokes, crackers, sharp cheddar</div>
+            </div>
             <div class="item-price">$150</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Land of Milk Honey & Flowers Board')" data-item="Land of Milk Honey & Flowers Board">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Land of Milk, Honey & Flowers</div><div class="item-desc">Sliced apples, whipped goat cheese, raspberry rose jam, honeycomb, gorgonzola, camembert, candied nuts, figs</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Land of Milk, Honey & Flowers</div>
+              <div class="item-desc">Whipped goat cheese, raspberry rose jam, honeycomb, gorgonzola, camembert, candied nuts, figs, sliced apples</div>
+            </div>
             <div class="item-price">$225</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Dessert Grazing Board')" data-item="Dessert Grazing Board">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Dessert Grazing Board</div><div class="item-desc">Seasonal brownies, coconut lemon bars, macarons, pastries, strawberries, mini cookies, chocolates</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Dessert Grazing Board</div>
+              <div class="item-desc">Seasonal brownies, coconut lemon bars, macarons, pastries, strawberries, mini cookies, chocolates</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$150</div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Salads (serves 8–10 / 15–20)</div>
+        <div class="menu-section-title">Salads — Serves 8–10 / 15–20</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Sesame Chicken Salad')" data-item="Sesame Chicken Salad">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Sesame Chicken Salad</div><div class="item-desc">Wonton crisps, oranges, almonds, carrots, edamame, sesame ginger dressing</div><div class="item-badges"><span class="badge kids">Kid-friendly</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Sesame Chicken Salad</div>
+              <div class="item-desc">Wonton crisps, oranges, almonds, carrots, edamame, sesame ginger dressing</div>
+              <div class="item-badges"><span class="badge kids">Kid-friendly</span></div>
+            </div>
             <div class="item-price">$70 / $140</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Wine Country Classic Salad')" data-item="Wine Country Classic Salad">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Wine Country Classic</div><div class="item-desc">Arugula, black mission figs, Sonoma goat cheese, balsamic syrup</div><div class="item-badges"><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Wine Country Classic</div>
+              <div class="item-desc">Arugula, black mission figs, Sonoma goat cheese, balsamic syrup</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$60 / $110</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Grilled Radicchio Caesar')" data-item="Grilled Radicchio Caesar">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Grilled Radicchio Caesar</div><div class="item-desc">Romaine, shaved parmesan, sourdough croutons</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Grilled Radicchio Caesar</div>
+              <div class="item-desc">Romaine, shaved parmesan, sourdough croutons</div>
+            </div>
             <div class="item-price">$55 / $100</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-lunch','Moroccan Salad')" data-item="Moroccan Salad">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Moroccan Salad</div><div class="item-desc">Spicy carrot & napa cabbage, black lentils, feta, cilantro dressing</div><div class="item-badges"><span class="badge veg">Veg</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Moroccan Salad</div>
+              <div class="item-desc">Spicy carrot & napa cabbage, black lentils, feta, cilantro dressing</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
             <div class="item-price">$55 / $100</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Field Greens Salad</div>
+              <div class="item-desc">Blackberry & candied pecan, arugula, shaved manchego, field flowers, blackberry balsamic</div>
+              <div class="item-badges"><span class="badge veg">Veg</span></div>
+            </div>
+            <div class="item-price">$60 / $110</div>
           </div>
         </div>
       </div>
@@ -1504,34 +1149,32 @@ body {
     <!-- ── WEDNESDAY DINNER: Spread Kitchen ── -->
     <div class="meal-panel" id="panel-wednesday-dinner">
       <div class="rest-header">
-        <div class="rest-header-bg" style="background: radial-gradient(ellipse at 80% 50%, rgba(92,122,95,0.45) 0%, transparent 70%)"></div>
+        <div class="rest-header-bg" style="background:radial-gradient(ellipse at 80% 50%,rgba(92,122,95,.45) 0%,transparent 70%)"></div>
         <div class="rest-header-inner">
           <span class="rest-emoji">🫙</span>
           <div class="rest-name">Spread Kitchen</div>
           <div class="rest-cuisine">Lebanese-Inspired · 18375 Sonoma Hwy · 707-721-1256</div>
           <div class="rest-tags">
-            <span class="rest-tag">Wednesday Dinner</span>
-            <span class="rest-tag highlight">Catering pickup: Wed Apr 8 only</span>
+            <span class="rest-tag hl">Pickup Wed Apr 8 only</span>
             <span class="rest-tag">All proteins halal</span>
+            <span class="rest-tag">8-person minimum</span>
           </div>
-          <div class="rest-why"><strong>Why tonight:</strong> Spread Kitchen only does catering pickup on Wednesday April 8 — which lands perfectly as your last dinner night. Lebanese-inspired, locally made, everything from scratch. The Full Spread at $40/person is the easiest group order.</div>
+          <div class="rest-why"><strong>Note:</strong> The Full Spread at $40/person × 12 = $480 is the easiest group order — includes proteins, rice, tabouleh, dips, and pita. Everything from scratch. Add baklava and brownies for dessert.</div>
         </div>
       </div>
-      <div id="persons-wednesday-dinner"></div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Group Packages (8-person minimum)</div>
+        <div class="menu-section-title">Group Packages — Per Person (8-person min)</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','The Full Spread')" data-item="The Full Spread">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">The Full Spread</div>
               <div class="item-desc">Choice of 2 proteins & sauces, saffron rice, tabouleh, choice of 2 dips, pita. Everything included.</div>
-              <div class="item-badges"><span class="badge popular">Best value for group</span></div>
+              <div class="item-badges"><span class="badge pop">Best value for group</span></div>
             </div>
             <div class="item-price">$40/pp</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Basic Pita Bar')" data-item="Basic Pita Bar">
-            <div class="item-check">✓</div>
+          <div class="menu-item">
             <div class="item-info">
               <div class="item-name">Basic Pita Bar</div>
               <div class="item-desc">Choice of 2 proteins & sauces, shredded cabbage, herbs, pita</div>
@@ -1540,88 +1183,117 @@ body {
           </div>
         </div>
       </div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Grilled Meats (by the pound / dozen)</div>
+        <div class="menu-section-title">Grilled Meats — choose your proteins</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Turmeric Chicken')" data-item="Turmeric Chicken">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Turmeric Chicken (by the lb)</div><div class="item-desc">Marinated chicken thighs, grilled & sliced, served with toum (whipped garlic sauce)</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Turmeric Chicken (by the lb)</div>
+              <div class="item-desc">Marinated thighs, grilled & sliced, served with toum (whipped garlic sauce)</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$22/lb</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Prime Beef Sirloin')" data-item="Prime Beef Sirloin">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Prime Beef Sirloin (by the lb)</div><div class="item-desc">Marinated with toum and baharat spices</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Prime Beef Sirloin (by the lb)</div>
+              <div class="item-desc">Marinated with toum and baharat spices</div>
+            </div>
             <div class="item-price">$35/lb</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Lamb Kofta')" data-item="Lamb Kofta">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Lamb Kofta (3.5oz patties)</div><div class="item-desc">Local lamb ground with onions and herbs, grilled</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Lamb Kofta (by the dozen)</div>
+              <div class="item-desc">Local lamb ground with onions and herbs, grilled 3.5oz patties</div>
+            </div>
             <div class="item-price">$80/dz</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Falafels')" data-item="Falafels">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Falafels (by the dozen)</div><div class="item-desc">Rancho Gordo chickpeas & black beans, herbs and spices, green tahini sauce</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Falafels (by the dozen)</div>
+              <div class="item-desc">Rancho Gordo chickpeas & black beans, herbs and spices, green tahini sauce</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$15/dz</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Cocktail Chicken Skewers')" data-item="Cocktail Chicken Skewers">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Cocktail Chicken Skewers (by the dz)</div><div class="item-desc">6" turmeric marinated chicken skewers, toum sauce</div><div class="item-badges"><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Cocktail Chicken Skewers (by the dozen)</div>
+              <div class="item-desc">6" turmeric marinated chicken skewers, toum sauce</div>
+              <div class="item-badges"><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$45/dz</div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
-        <div class="menu-section-title">Sides & Boards</div>
+        <div class="menu-section-title">Sides & Dips</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Saffron Rice')" data-item="Saffron Rice">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Saffron Rice (quart)</div><div class="item-desc">Basmati with saffron, turmeric, caramelized onions, apricots</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Saffron Rice (quart)</div>
+              <div class="item-desc">Basmati with saffron, turmeric, caramelized onions, apricots</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
+            </div>
             <div class="item-price">$12</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Quinoa Tabouleh')" data-item="Quinoa Tabouleh">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Quinoa Tabouleh (quart)</div><div class="item-desc">Quinoa, parsley, mint, shredded cabbage, scallions, allspice, lemon</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Quinoa Tabouleh (quart)</div>
+              <div class="item-desc">Quinoa, parsley, mint, cabbage, scallions, allspice, lemon</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
+            </div>
             <div class="item-price">$32</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Beiruti Hummus')" data-item="Beiruti Hummus">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Beiruti Hummus</div><div class="item-desc">Tahini, garlic, cumin, sumac, lemon, parsley</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Beiruti Hummus</div>
+              <div class="item-desc">Tahini, garlic, cumin, sumac, lemon, parsley</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge kids">Kids love it</span></div>
+            </div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Baba Ganoush')" data-item="Baba Ganoush">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Baba Ganoush</div><div class="item-desc">Roasted eggplant, tahini, garlic, lemon, olive oil</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Baba Ganoush</div>
+              <div class="item-desc">Roasted eggplant, tahini, garlic, lemon, olive oil</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span></div>
+            </div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Mezze Board')" data-item="Mezze Board">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Mezze Board</div><div class="item-desc">Medium or Large. Vegan & GF options. Fully garnished wood board, ready to serve.</div><div class="item-badges"><span class="badge veg">Vegan opt.</span><span class="badge gf">GF</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Mezze Board (Medium or Large)</div>
+              <div class="item-desc">Fully garnished wood board, vegan & GF options, ready to serve</div>
+              <div class="item-badges"><span class="badge veg">Vegan opt.</span><span class="badge gf">GF</span></div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="menu-section">
         <div class="menu-section-title">Sweets</div>
         <div class="menu-items">
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Pistachio-Walnut Baklava')" data-item="Pistachio-Walnut Baklava">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Pistachio-Walnut Baklava (12 pieces)</div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Pistachio-Walnut Baklava (12 pieces)</div>
+            </div>
             <div class="item-price">$48</div>
           </div>
-          <div class="menu-item" onclick="toggleItem(this,'wednesday-dinner','Tahini Brownies GF')" data-item="Tahini Brownies GF">
-            <div class="item-check">✓</div>
-            <div class="item-info"><div class="item-name">Tahini Brownies (dozen)</div><div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span><span class="badge kids">Kids love it</span></div></div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Tahini Brownies GF (dozen)</div>
+              <div class="item-badges"><span class="badge veg">Veg</span><span class="badge gf">GF</span><span class="badge kids">Kids love it</span></div>
+            </div>
             <div class="item-price">$42</div>
           </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-name">Mix: 6 Baklava + 6 Brownies</div>
+            </div>
+            <div class="item-price">$45</div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <!-- ── SUMMARY ── -->
-    <div class="meal-panel" id="panel-summary">
-      <div style="padding-top:4px;">
-        <div class="note-box" style="margin-bottom:16px;">
-          <strong>Trip summary:</strong> 3 families · 12 people · Sun dinner through Wed dinner · 3360 Westach Way, Sonoma
-        </div>
-        <div id="summary-content"></div>
-        <button class="copy-btn" onclick="copyOrders()">📋 Copy Full Order Summary</button>
       </div>
     </div>
 
@@ -1629,174 +1301,10 @@ body {
 </div><!-- /app -->
 
 <script>
-const MEALS = [
-  { id: 'sunday-dinner',    label: 'Sunday Dinner',    restaurant: 'El Molino Central' },
-  { id: 'monday-lunch',     label: 'Monday Lunch',     restaurant: 'Napa Catering Co.' },
-  { id: 'monday-dinner',    label: 'Monday Dinner',    restaurant: 'Bangkok 9' },
-  { id: 'tuesday-lunch',    label: 'Tuesday Lunch',    restaurant: 'Allikai Eatery' },
-  { id: 'tuesday-dinner',   label: 'Tuesday Dinner',   restaurant: 'Napa Catering Co.' },
-  { id: 'wednesday-lunch',  label: 'Wednesday Lunch',  restaurant: 'Delicious Dish' },
-  { id: 'wednesday-dinner', label: 'Wednesday Dinner', restaurant: 'Spread Kitchen' },
-];
-
-const state = {
-  people: ['Family 1 – Adults', 'Family 1 – Kids', 'Family 2 – Adults', 'Family 2 – Kids', 'Family 3 – Adults', 'Family 3 – Kids'],
-  activePerson: 'Family 1 – Adults',
-  currentMeal: 'sunday-dinner',
-  // orders[mealId][person] = [items]
-  orders: {}
-};
-
-function getOrder(meal, person) {
-  if (!state.orders[meal]) state.orders[meal] = {};
-  if (!state.orders[meal][person]) state.orders[meal][person] = [];
-  return state.orders[meal][person];
-}
-
-function toggleItem(el, meal, item) {
-  const person = state.activePerson;
-  const orders = getOrder(meal, person);
-  const idx = orders.indexOf(item);
-  if (idx >= 0) orders.splice(idx, 1);
-  else orders.push(item);
-  refreshMealUI(meal);
-  if (state.currentMeal === 'summary') updateSummary();
-}
-
-function refreshMealUI(meal) {
-  const panel = document.getElementById('panel-' + meal);
-  if (!panel) return;
-  panel.querySelectorAll('.menu-item').forEach(el => {
-    const item = el.dataset.item;
-    const selected = getOrder(meal, state.activePerson).includes(item);
-    el.classList.toggle('selected', selected);
-  });
-}
-
-function renderPersonBar(meal) {
-  const el = document.getElementById('persons-' + meal);
-  if (!el) return;
-  el.innerHTML = `
-    <div class="person-bar">
-      <div class="person-bar-label">Ordering for:</div>
-      <div class="person-chips">
-        ${state.people.map(p => `
-          <button class="person-chip ${state.activePerson === p ? 'active' : ''}"
-            onclick="selectPerson('${p}')">${p}</button>
-        `).join('')}
-        <button class="add-person-btn" onclick="addPerson()">+ Add</button>
-      </div>
-    </div>
-  `;
-}
-
-function renderAllPersonBars() {
-  MEALS.forEach(m => renderPersonBar(m.id));
-}
-
-function selectPerson(person) {
-  state.activePerson = person;
-  renderAllPersonBars();
-  MEALS.forEach(m => refreshMealUI(m.id));
-  if (state.currentMeal === 'summary') updateSummary();
-}
-
-function addPerson() {
-  const name = prompt('Enter name or family label:');
-  if (name && name.trim() && !state.people.includes(name.trim())) {
-    state.people.push(name.trim());
-    renderAllPersonBars();
-  }
-}
-
-function switchMeal(mealId) {
-  state.currentMeal = mealId;
-  document.querySelectorAll('.meal-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.meal-tab').forEach(b => b.classList.remove('active'));
-  const panel = document.getElementById('panel-' + mealId);
-  if (panel) panel.classList.add('active');
-  // activate tab
-  document.querySelectorAll('.meal-tab').forEach(btn => {
-    if (btn.getAttribute('onclick').includes("'" + mealId + "'")) btn.classList.add('active');
-  });
-  if (mealId === 'summary') updateSummary();
-  // scroll tab into view
-  setTimeout(() => {
-    document.querySelector('.meal-tab.active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }, 50);
-}
-
-function updateSummary() {
-  const container = document.getElementById('summary-content');
-  if (!container) return;
-  let html = '';
-  let totalItems = 0;
-
-  MEALS.forEach(meal => {
-    const allOrders = {};
-    state.people.forEach(person => {
-      getOrder(meal.id, person).forEach(item => {
-        if (!allOrders[item]) allOrders[item] = [];
-        allOrders[item].push(person);
-        totalItems++;
-      });
-    });
-    const count = Object.keys(allOrders).length;
-    html += `
-      <div class="summary-section">
-        <div class="summary-section-header">
-          <div class="summary-section-title">${meal.label} <span style="color:var(--slate);font-weight:400;font-size:12px;">· ${meal.restaurant}</span></div>
-          <span class="summary-count">${count} item${count !== 1 ? 's' : ''}</span>
-        </div>
-        <div class="summary-list">
-    `;
-    if (count === 0) {
-      html += `<div class="summary-empty">No items selected yet</div>`;
-    } else {
-      Object.entries(allOrders).forEach(([item, people]) => {
-        html += `
-          <div class="summary-row">
-            <div class="summary-row-left">
-              <div class="summary-row-item">${item}</div>
-              <div class="summary-row-who">${people.join(', ')}</div>
-            </div>
-            <div style="color:var(--slate);font-size:12px;flex-shrink:0;font-weight:600;">${people.length}×</div>
-          </div>
-        `;
-      });
-    }
-    html += `</div></div>`;
-  });
-
-  if (totalItems === 0) {
-    html = '<div class="summary-empty" style="padding:40px 0;">Select items from each meal tab to build your order summary.</div>';
-  }
-  container.innerHTML = html;
-}
-
-function copyOrders() {
-  let text = `🍷 SONOMA TRIP FOOD ORDERS\n3360 Westach Way · Apr 6–10\n${'─'.repeat(40)}\n\n`;
-  MEALS.forEach(meal => {
-    const allOrders = {};
-    state.people.forEach(person => {
-      getOrder(meal.id, person).forEach(item => {
-        if (!allOrders[item]) allOrders[item] = [];
-        allOrders[item].push(person);
-      });
-    });
-    if (Object.keys(allOrders).length > 0) {
-      text += `${meal.label.toUpperCase()} — ${meal.restaurant}\n`;
-      Object.entries(allOrders).forEach(([item, people]) => {
-        text += `  • ${item} ×${people.length}  (${people.join(', ')})\n`;
-      });
-      text += '\n';
-    }
-  });
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.copy-btn');
-    btn.textContent = '✅ Copied!';
-    setTimeout(() => btn.textContent = '📋 Copy Full Order Summary', 2000);
-  }).catch(() => alert(text));
+function goTo(mealId) {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  switchTo(mealId);
 }
 
 function showCover() {
@@ -1804,15 +1312,18 @@ function showCover() {
   document.getElementById('app').style.display = 'none';
 }
 
-function goToMeal(mealId) {
-  document.getElementById('cover').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  switchMeal(mealId);
+function switchTo(mealId) {
+  document.querySelectorAll('.meal-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.meal-tab').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('panel-' + mealId);
+  if (panel) panel.classList.add('active');
+  document.querySelectorAll('.meal-tab').forEach(btn => {
+    if (btn.getAttribute('onclick').includes("'" + mealId + "'")) btn.classList.add('active');
+  });
+  setTimeout(() => {
+    document.querySelector('.meal-tab.active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, 50);
 }
-
-// INIT
-renderAllPersonBars();
-MEALS.forEach(m => refreshMealUI(m.id));
 </script>
 </body>
 </html>
