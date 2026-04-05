@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Sonoma Food Planner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1305,11 +1308,7 @@ body {
 .content .menu-item { cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 .content .menu-item:hover { border-color: var(--rust-light); background: white; }
 .content .menu-item.in-cart { border-color: var(--rust); background: rgba(184,76,43,0.05); }
-.content .menu-item.in-cart > .item-info > .item-name::before {
-  content: '✓  ';
-  color: var(--rust);
-  font-weight: 700;
-}
+.content .menu-item.in-cart .item-name { color: var(--rust); }
 
 /* Floating cart button */
 .cart-fab {
@@ -1512,7 +1511,10 @@ let cart = loadCart();
 function toggleItem(el, mealId) {
   const nameEl = el.querySelector('.item-info > .item-name');
   if (!nameEl) return;
-  const name = nameEl.textContent.replace(/^✓\s+/, '').trim();
+  const name = nameEl.dataset.itemName || nameEl.textContent.trim();
+  // Store original name on first access
+  if (!nameEl.dataset.itemName) nameEl.dataset.itemName = name;
+
   const priceEl = el.querySelector('.item-price');
   const price = priceEl ? priceEl.textContent.trim() : '';
 
@@ -1566,9 +1568,10 @@ function syncMenuUI() {
     const mealId = el.dataset.meal;
     const nameEl = el.querySelector('.item-info > .item-name');
     if (!nameEl) return;
-    const name = nameEl.textContent.replace(/^✓\s+/, '').trim();
+    const name = nameEl.dataset.itemName || nameEl.textContent.trim();
+    if (!nameEl.dataset.itemName) nameEl.dataset.itemName = name;
     const inCart = cart[mealId] && cart[mealId].some(i => i.name === name);
-    el.classList.toggle('in-cart', inCart);
+    el.classList.toggle('in-cart', !!inCart);
   });
 }
 
