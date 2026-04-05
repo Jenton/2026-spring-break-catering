@@ -1485,7 +1485,7 @@ const MEALS = [
 ];
 
 // ─── CART STATE (localStorage-backed) ───
-const STORAGE_KEY = 'sonoma-trip-cart-2026';
+const STORAGE_KEY = 'sonoma-trip-cart-v3';
 
 function loadCart() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -1655,7 +1655,8 @@ function switchTo(mealId) {
 }
 
 // ─── INIT ───
-// Clear any stale cart data that might be malformed
+// Clear old storage keys from previous versions
+['sonoma-trip-cart-2026', 'sonoma-trip-cart'].forEach(k => localStorage.removeItem(k));
 try {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (raw) JSON.parse(raw); // validate — throws if corrupt
